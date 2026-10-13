@@ -1,7 +1,12 @@
 {
   "nama": "Rumah Tahfidz Al Ittihad",
   "facebook": "",
-  "ustadz": [],
+  "ustadz": [
+    {
+      "nama": "082387454335",
+      "telepon": "6285184070978"
+    }
+  ],
   "foto": [],
   "updated": "2026-10-13"
 }
