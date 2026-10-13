@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rumah Tahfidz Al Ittihad</title>
+<meta name="description" content="Dokumentasi kegiatan dan kontak Rumah Tahfidz Al Ittihad.">
+<meta name="theme-color" content="#0f5b3f">
+<style>
+:root{
+  --green:#0f5b3f; --green-2:#157a55; --gold:#c8a24a; --gold-2:#e6c877;
+  --bg:#fbf7ee; --card:#ffffff; --ink:#1d2b24; --muted:#5b6b62; --line:#e6dfcd;
+  --shadow:0 10px 30px rgba(15,91,63,.12);
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#0d1a14; --card:#14261e; --ink:#eaf2ec; --muted:#9bb0a4; --line:#23392e; --shadow:0 10px 30px rgba(0,0,0,.45);}
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.arab{font-family:"Amiri","Scheherazade New","Noto Naskh Arabic","Traditional Arabic",serif}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:rgba(15,91,63,.92);backdrop-filter:blur(8px);color:#fff;border-bottom:1px solid rgba(255,255,255,.12)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.2px}
+.brand .logo{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--gold),var(--gold-2));display:grid;place-items:center;font-size:18px;color:#0f3d2a}
+.links{display:flex;gap:4px}
+.links a{padding:8px 12px;border-radius:999px;font-size:14px;opacity:.92}
+.links a:hover{background:rgba(255,255,255,.14);opacity:1}
+@media(max-width:560px){.links a{padding:8px 8px;font-size:13px}.brand span.t{display:none}}
+
+/* hero */
+.hero{position:relative;color:#fff;min-height:82vh;display:flex;align-items:center;text-align:center;
+  background:#0f5b3f center/cover no-repeat;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,52,36,.72),rgba(8,52,36,.82) 60%,rgba(8,52,36,.95))}
+.hero::after{content:"";position:absolute;inset:0;opacity:.07;
+  background-image:radial-gradient(circle at 20px 20px,#fff 2px,transparent 2.5px);background-size:40px 40px}
+.hero .wrap{position:relative;z-index:2;padding-top:60px;padding-bottom:60px}
+.bismillah{font-size:clamp(26px,5vw,38px);color:var(--gold-2);margin-bottom:10px}
+.hero h1{font-size:clamp(32px,7vw,58px);line-height:1.1;font-weight:800;letter-spacing:-.5px}
+.hero h1 em{font-style:normal;color:var(--gold-2)}
+.hero p.sub{max-width:560px;margin:16px auto 0;font-size:clamp(15px,2.4vw,18px);opacity:.92}
+.cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:999px;font-weight:600;font-size:15px;border:0;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.wa{background:#25d366;color:#06361b;box-shadow:0 8px 20px rgba(37,211,102,.35)}
+.btn.ghost{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.35)}
+.btn.fb{background:#1877f2;color:#fff}
+.ornament{display:flex;align-items:center;justify-content:center;gap:12px;margin:22px auto 0;color:var(--gold-2);font-size:14px;letter-spacing:4px}
+.ornament::before,.ornament::after{content:"";height:1px;width:70px;background:linear-gradient(90deg,transparent,var(--gold-2))}
+.ornament::after{transform:scaleX(-1)}
+
+/* stats */
+.stats{margin-top:-46px;position:relative;z-index:5}
+.stats .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;background:var(--card);border-radius:20px;box-shadow:var(--shadow);padding:20px;border:1px solid var(--line)}
+.stat{text-align:center}
+.stat b{display:block;font-size:clamp(22px,5vw,32px);color:var(--green-2);line-height:1.1}
+.stat span{font-size:13px;color:var(--muted)}
+
+/* sections */
+section{padding:72px 0 8px}
+.eyebrow{color:var(--gold);font-weight:700;letter-spacing:2px;font-size:12px;text-transform:uppercase}
+h2{font-size:clamp(26px,5vw,36px);margin:6px 0 10px;line-height:1.2}
+.lead{color:var(--muted);max-width:640px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:26px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:var(--shadow)}
+.card .ic{width:50px;height:50px;border-radius:14px;display:grid;place-items:center;font-size:26px;background:linear-gradient(135deg,rgba(21,122,85,.14),rgba(200,162,74,.22));margin-bottom:12px}
+.card h3{font-size:18px;margin-bottom:6px}
+.card p{color:var(--muted);font-size:14.5px}
+
+/* gallery */
+.gallery{columns:2;column-gap:12px;margin-top:26px}
+@media(min-width:760px){.gallery{columns:3;column-gap:16px}}
+.shot{break-inside:avoid;margin-bottom:12px;position:relative;border-radius:16px;overflow:hidden;cursor:zoom-in;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow)}
+@media(min-width:760px){.shot{margin-bottom:16px}}
+.shot img{width:100%;height:auto;transition:transform .4s}
+.shot:hover img{transform:scale(1.04)}
+.shot .cap{position:absolute;left:0;right:0;bottom:0;padding:26px 12px 10px;color:#fff;font-size:13px;line-height:1.35;
+  background:linear-gradient(0deg,rgba(0,0,0,.72),transparent)}
+.shot .cap small{display:block;opacity:.8;font-size:11.5px}
+.empty{color:var(--muted);padding:28px;border:2px dashed var(--line);border-radius:16px;text-align:center;margin-top:26px}
+
+/* contact */
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:26px}
+.person{display:flex;gap:14px;align-items:center}
+.avatar{flex:0 0 54px;height:54px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:22px;color:#fff;background:linear-gradient(135deg,var(--green),var(--green-2))}
+.person h3{font-size:17px}
+.person small{color:var(--muted);display:block}
+.card .row{margin-top:16px}
+.card .btn{padding:11px 18px;font-size:14px;width:100%;justify-content:center}
+
+footer{margin-top:80px;background:var(--green);color:#e6f2ea;text-align:center;padding:34px 20px 90px;font-size:14px}
+footer .arab{font-size:24px;color:var(--gold-2);margin-bottom:6px}
+footer small{opacity:.75;display:block;margin-top:6px}
+
+/* floating WhatsApp */
+.fab{position:fixed;right:16px;bottom:16px;z-index:60;width:58px;height:58px;border-radius:50%;background:#25d366;display:none;place-items:center;
+  box-shadow:0 10px 24px rgba(0,0,0,.3);font-size:28px;color:#fff}
+.fab.show{display:grid}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;flex-direction:column;padding:16px}
+.lb.open{display:flex}
+.lb img{max-height:78vh;max-width:100%;border-radius:12px;object-fit:contain}
+.lb .meta{color:#fff;margin-top:12px;text-align:center;max-width:680px;font-size:14px}
+.lb .meta small{opacity:.7;display:block}
+.lb button{position:absolute;background:rgba(255,255,255,.14);color:#fff;border:0;border-radius:50%;width:46px;height:46px;font-size:22px;cursor:pointer}
+.lb .x{top:14px;right:14px}.lb .p{left:12px;top:50%}.lb .n{right:12px;top:50%}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}
+.reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#beranda"><div class="logo">🕌</div><span class="t">Al Ittihad</span></a>
+    <div class="links">
+      <a href="#program">Program</a>
+      <a href="#galeri">Dokumentasi</a>
+      <a href="#kontak">Kontak</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="beranda">
+  <div class="wrap">
+    <div class="bismillah arab" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+    <h1>Rumah Tahfidz <em>Al Ittihad</em></h1>
+    <p class="sub">Tempat anak-anak belajar membaca, menghafal, dan mencintai Al-Qur’an bersama para ustadz.</p>
+    <div class="ornament">✦ ✦ ✦</div>
+    <div class="cta">
+      <a class="btn wa" id="heroWa" href="#kontak">💬 Hubungi via WhatsApp</a>
+      <a class="btn ghost" href="#galeri">📷 Lihat Dokumentasi</a>
+    </div>
+  </div>
+</header>
+
+<div class="stats"><div class="wrap">
+  <div class="grid">
+    <div class="stat"><b id="stFoto">0</b><span>Foto Dokumentasi</span></div>
+    <div class="stat"><b>3</b><span>Kelas Mengaji</span></div>
+    <div class="stat"><b id="stUstadz">0</b><span>Ustadz Pembimbing</span></div>
+  </div>
+</div></div>
+
+<section id="program"><div class="wrap reveal">
+  <div class="eyebrow">Program</div>
+  <h2>Kelas di Rumah Tahfidz</h2>
+  <p class="lead">Tiga kelas yang berjalan untuk membimbing anak-anak belajar dan menghafal Al-Qur’an.</p>
+  <div class="cards">
+    <div class="card"><div class="ic">🕌</div><h3>Ngaji Rumah Tahfidz</h3><p>Belajar membaca Al-Qur’an dan hafalan bersama di rumah tahfidz.</p></div>
+    <div class="card"><div class="ic">🌙</div><h3>Ngaji Malam SMP</h3><p>Kelas mengaji malam hari khusus untuk siswa SMP.</p></div>
+    <div class="card"><div class="ic">📖</div><h3>Hafalan Anak SMP</h3><p>Setoran dan muraja’ah hafalan untuk anak-anak tingkat SMP.</p></div>
+  </div>
+</div></section>
+
+<section id="galeri"><div class="wrap">
+  <div class="eyebrow">Dokumentasi</div>
+  <h2>Galeri Kegiatan</h2>
+  <p class="lead">Potret kebersamaan dan kegiatan belajar di Rumah Tahfidz Al Ittihad.</p>
+  <div class="gallery" id="gallery"></div>
+  <div class="empty" id="galleryEmpty" hidden>Belum ada foto dokumentasi.</div>
+</div></section>
+
+<section id="kontak"><div class="wrap">
+  <div class="eyebrow">Kontak</div>
+  <h2>Hubungi Kami</h2>
+  <p class="lead">Silakan hubungi ustadz melalui WhatsApp atau ikuti kabar terbaru di Facebook.</p>
+  <div class="contact-grid" id="contacts"></div>
+</div></section>
+
+<footer>
+  <div class="arab" dir="rtl">خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ</div>
+  <div>Rumah Tahfidz Al Ittihad</div>
+  <small id="updated"></small>
+</footer>
+
+<a class="fab" id="fab" href="#kontak" aria-label="WhatsApp">💬</a>
+
+<div class="lb" id="lb">
+  <button class="x" id="lbX" aria-label="Tutup">✕</button>
+  <button class="p" id="lbP" aria-label="Sebelumnya">‹</button>
+  <button class="n" id="lbN" aria-label="Berikutnya">›</button>
+  <img id="lbImg" alt="">
+  <div class="meta" id="lbMeta"></div>
+</div>
+
+<script>
+const FALLBACK={nama:"Rumah Tahfidz Al Ittihad",facebook:"",ustadz:[],
+  foto:[{file:"photos/kegiatan-awal.jpg",caption:"Kegiatan mengaji bersama",tanggal:"2026-10-13"}],updated:"2026-10-13"};
+
+async function loadData(){
+  try{
+    const r=await fetch("data.json?t="+Date.now(),{cache:"no-store"});
+    if(!r.ok) throw new Error(r.status);
+    return await r.json();
+  }catch(e){ return FALLBACK; }
+}
+
+const digits=s=>String(s||"").replace(/\D/g,"");
+function waNum(n){let d=digits(n); if(d.startsWith("0")) d="62"+d.slice(1); else if(d.startsWith("8")) d="62"+d; return d;}
+function pretty(n){const d=waNum(n); return d.startsWith("62")?"0"+d.slice(2):d;}
+function waLink(n){
+  const msg="Assalamu'alaikum, saya ingin bertanya tentang Rumah Tahfidz Al Ittihad.";
+  return "https://wa.me/"+waNum(n)+"?text="+encodeURIComponent(msg);
+}
+function fmtDate(t){
+  if(!t) return "";
+  const d=new Date(t+"T00:00:00");
+  return isNaN(d)?t:d.toLocaleDateString("id-ID",{day:"numeric",month:"long",year:"numeric"});
+}
+function safeUrl(u){
+  u=String(u||"").trim();
+  return /^https?:\/\//i.test(u)?u:"";
+}
+function el(tag,props={},kids=[]){
+  const e=document.createElement(tag);
+  for(const k in props){
+    if(k==="text") e.textContent=props[k];
+    else if(k==="class") e.className=props[k];
+    else e.setAttribute(k,props[k]);
+  }
+  [].concat(kids).forEach(c=>c&&e.appendChild(c));
+  return e;
+}
+
+let PHOTOS=[], cur=0;
+
+function renderGallery(list){
+  const g=document.getElementById("gallery");
+  g.innerHTML="";
+  PHOTOS=list.filter(f=>/^photos\/[\w.\-]+$/.test(f.file||"")).slice().reverse(); // terbaru di atas
+  document.getElementById("galleryEmpty").hidden=PHOTOS.length>0;
+  PHOTOS.forEach((f,i)=>{
+    const img=el("img",{src:f.file,alt:f.caption||"Dokumentasi",loading:"lazy"});
+    const fig=el("figure",{class:"shot"},[img]);
+    if(f.caption||f.tanggal){
+      const cap=el("div",{class:"cap"});
+      if(f.caption) cap.appendChild(document.createTextNode(f.caption));
+      if(f.tanggal) cap.appendChild(el("small",{text:fmtDate(f.tanggal)}));
+      fig.appendChild(cap);
+    }
+    fig.addEventListener("click",()=>openLb(i));
+    g.appendChild(fig);
+  });
+  document.getElementById("stFoto").textContent=PHOTOS.length;
+  if(PHOTOS.length) document.getElementById("beranda").style.backgroundImage="url('"+PHOTOS[0].file+"')";
+}
+
+function renderContacts(d){
+  const box=document.getElementById("contacts");
+  box.innerHTML="";
+  const us=(d.ustadz||[]).filter(u=>digits(u.telepon).length>=9);
+  us.forEach(u=>{
+    const initial=(String(u.nama||"U").replace(/^(ustadz|ustadzah|ust\.?)\s+/i,"").trim()[0]||"U").toUpperCase();
+    const card=el("div",{class:"card"},[
+      el("div",{class:"person"},[
+        el("div",{class:"avatar",text:initial}),
+        el("div",{},[el("h3",{text:u.nama||"Ustadz"}),el("small",{text:pretty(u.telepon)})])
+      ]),
+      el("div",{class:"row"},[el("a",{class:"btn wa",href:waLink(u.telepon),target:"_blank",rel:"noopener",text:"💬 Chat WhatsApp"})])
+    ]);
+    box.appendChild(card);
+  });
+  const fb=safeUrl(d.facebook);
+  if(fb){
+    box.appendChild(el("div",{class:"card"},[
+      el("div",{class:"person"},[
+        el("div",{class:"avatar",text:"f",style:"background:#1877f2"}),
+        el("div",{},[el("h3",{text:"Facebook"}),el("small",{text:"Kabar & kegiatan terbaru"})])
+      ]),
+      el("div",{class:"row"},[el("a",{class:"btn fb",href:fb,target:"_blank",rel:"noopener",text:"Kunjungi Facebook"})])
+    ]));
+  }
+  if(!us.length&&!fb) box.appendChild(el("div",{class:"empty",text:"Kontak belum tersedia."}));
+  document.getElementById("stUstadz").textContent=us.length;
+  if(us.length){
+    const link=waLink(us[0].telepon);
+    const hw=document.getElementById("heroWa"); hw.href=link; hw.target="_blank"; hw.rel="noopener";
+    const fab=document.getElementById("fab"); fab.href=link; fab.target="_blank"; fab.rel="noopener"; fab.classList.add("show");
+  }
+}
+
+/* lightbox */
+const lb=document.getElementById("lb");
+function showLb(){
+  const f=PHOTOS[cur]; if(!f) return;
+  document.getElementById("lbImg").src=f.file;
+  const m=document.getElementById("lbMeta"); m.innerHTML="";
+  if(f.caption) m.appendChild(document.createTextNode(f.caption));
+  if(f.tanggal) m.appendChild(el("small",{text:fmtDate(f.tanggal)}));
+}
+function openLb(i){cur=i;showLb();lb.classList.add("open");document.body.style.overflow="hidden";}
+function closeLb(){lb.classList.remove("open");document.body.style.overflow="";}
+function step(n){cur=(cur+n+PHOTOS.length)%PHOTOS.length;showLb();}
+document.getElementById("lbX").onclick=closeLb;
+document.getElementById("lbP").onclick=()=>step(-1);
+document.getElementById("lbN").onclick=()=>step(1);
+lb.addEventListener("click",e=>{if(e.target===lb)closeLb();});
+document.addEventListener("keydown",e=>{
+  if(!lb.classList.contains("open"))return;
+  if(e.key==="Escape")closeLb(); if(e.key==="ArrowLeft")step(-1); if(e.key==="ArrowRight")step(1);
+});
+
+/* animasi muncul */
+const io="IntersectionObserver" in window?new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target);}}),{threshold:.12}):null;
+document.querySelectorAll(".reveal").forEach(n=>io?io.observe(n):n.classList.add("in"));
+
+loadData().then(d=>{
+  d=Object.assign({},FALLBACK,d||{});
+  renderGallery(d.foto||[]);
+  renderContacts(d);
+  if(d.updated) document.getElementById("updated").textContent="Diperbarui: "+fmtDate(d.updated);
+});
+</script>
+</body>
+</html>
