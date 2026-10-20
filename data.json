@@ -7,6 +7,13 @@
       "telepon": "6281292012733"
     }
   ],
-  "foto": [],
+  "foto": [
+    {
+      "file": "photos/20261020-211839-b182.jpg",
+      "caption": "",
+      "tanggal": "2026-10-20",
+      "program": "takhsin"
+    }
+  ],
   "updated": "2026-10-20"
 }
