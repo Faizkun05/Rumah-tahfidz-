@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rumah Tahfidz Al Ittihad</title>
-<meta name="description" content="Dokumentasi kegiatan dan kontak Rumah Tahfidz Al Ittihad.">
+<meta name="description" content="Program Takhsin Qur’an, Tahfiz Qur’an, Praktek Ibadah, dan Doa Harian di Rumah Tahfidz Al Ittihad, lengkap dengan foto dokumentasi.">
 <meta name="theme-color" content="#0f5b3f">
 <style>
 :root{
@@ -71,6 +71,19 @@ h2{font-size:clamp(26px,5vw,36px);margin:6px 0 10px;line-height:1.2}
 .card .ic{width:50px;height:50px;border-radius:14px;display:grid;place-items:center;font-size:26px;background:linear-gradient(135deg,rgba(21,122,85,.14),rgba(200,162,74,.22));margin-bottom:12px}
 .card h3{font-size:18px;margin-bottom:6px}
 .card p{color:var(--muted);font-size:14.5px}
+
+/* program */
+.cards.four{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+button.prog{font:inherit;color:inherit;text-align:left;cursor:pointer;display:flex;flex-direction:column;transition:transform .15s,border-color .15s}
+button.prog:hover,button.prog:focus-visible{transform:translateY(-4px);border-color:var(--gold);outline:none}
+button.prog .go{margin-top:auto;padding-top:14px;font-size:13.5px;font-weight:600;color:var(--green-2)}
+@media (prefers-color-scheme:dark){button.prog .go{color:var(--gold-2)}}
+.hint{margin-top:14px;font-size:13.5px;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.chip{font:inherit;font-size:13.5px;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.chip.on{background:var(--green);border-color:var(--green);color:#fff}
+.shot .cap b{display:block;font-size:11.5px;color:var(--gold-2);font-weight:700;margin-bottom:2px}
+.lb .meta b{display:block;color:var(--gold-2);margin-bottom:2px}
 
 /* gallery */
 .gallery{columns:2;column-gap:12px;margin-top:26px}
@@ -143,26 +156,24 @@ footer small{opacity:.75;display:block;margin-top:6px}
 <div class="stats"><div class="wrap">
   <div class="grid">
     <div class="stat"><b id="stFoto">0</b><span>Foto Dokumentasi</span></div>
-    <div class="stat"><b>3</b><span>Kelas Mengaji</span></div>
+    <div class="stat"><b>4</b><span>Program Unggulan</span></div>
     <div class="stat"><b id="stUstadz">0</b><span>Ustadz Pembimbing</span></div>
   </div>
 </div></div>
 
 <section id="program"><div class="wrap reveal">
   <div class="eyebrow">Program</div>
-  <h2>Kelas di Rumah Tahfidz</h2>
-  <p class="lead">Tiga kelas yang berjalan untuk membimbing anak-anak belajar dan menghafal Al-Qur’an.</p>
-  <div class="cards">
-    <div class="card"><div class="ic">🕌</div><h3>Ngaji Rumah Tahfidz</h3><p>Belajar membaca Al-Qur’an dan hafalan bersama di rumah tahfidz.</p></div>
-    <div class="card"><div class="ic">🌙</div><h3>Ngaji Malam SMP</h3><p>Kelas mengaji malam hari khusus untuk siswa SMP.</p></div>
-    <div class="card"><div class="ic">📖</div><h3>Hafalan Anak SMP</h3><p>Setoran dan muraja’ah hafalan untuk anak-anak tingkat SMP.</p></div>
-  </div>
+  <h2>Program Rumah Tahfidz</h2>
+  <p class="lead">Empat program utama untuk membimbing anak-anak belajar Al-Qur’an dan beribadah.</p>
+  <div class="cards four" id="programCards"></div>
+  <p class="hint">👆 Ketuk salah satu program untuk melihat foto dokumentasinya.</p>
 </div></section>
 
 <section id="galeri"><div class="wrap">
   <div class="eyebrow">Dokumentasi</div>
-  <h2>Galeri Kegiatan</h2>
-  <p class="lead">Potret kebersamaan dan kegiatan belajar di Rumah Tahfidz Al Ittihad.</p>
+  <h2 id="galTitle">Galeri Kegiatan</h2>
+  <p class="lead" id="galLead">Potret kebersamaan dan kegiatan belajar di Rumah Tahfidz Al Ittihad.</p>
+  <div class="chips" id="chips"></div>
   <div class="gallery" id="gallery"></div>
   <div class="empty" id="galleryEmpty" hidden>Belum ada foto dokumentasi.</div>
 </div></section>
@@ -229,18 +240,72 @@ function el(tag,props={},kids=[]){
   return e;
 }
 
-let PHOTOS=[], cur=0;
+const PROGRAMS=[
+  {id:"takhsin",ikon:"📖",nama:"Takhsin Qur’an",ket:"Memperbaiki dan memperindah bacaan Al-Qur’an: makhraj huruf, tajwid, dan kelancaran membaca."},
+  {id:"tahfiz",ikon:"🕋",nama:"Tahfiz Qur’an",ket:"Menghafal Al-Qur’an dengan setoran hafalan dan muraja’ah bersama ustadz."},
+  {id:"ibadah",ikon:"🕌",nama:"Praktek Ibadah",ket:"Belajar tata cara ibadah secara langsung, mulai dari wudhu hingga salat."},
+  {id:"doa",ikon:"🤲",nama:"Doa Harian",ket:"Menghafal dan memahami doa-doa sehari-hari beserta adabnya."}
+];
+const PROG=Object.fromEntries(PROGRAMS.map(p=>[p.id,p]));
 
-function renderGallery(list){
+let ALL=[], PHOTOS=[], cur=0, FILTER="all";
+
+const countOf=id=>ALL.filter(f=>f.program===id).length;
+
+function renderPrograms(){
+  const box=document.getElementById("programCards");
+  box.innerHTML="";
+  PROGRAMS.forEach(p=>{
+    const n=countOf(p.id);
+    const b=el("button",{class:"card prog",type:"button","aria-label":"Lihat dokumentasi "+p.nama},[
+      el("div",{class:"ic",text:p.ikon}),
+      el("h3",{text:p.nama}),
+      el("p",{text:p.ket}),
+      el("div",{class:"go",text:"📷 "+n+" foto • Lihat dokumentasi →"})
+    ]);
+    b.addEventListener("click",()=>{
+      setFilter(p.id);
+      document.getElementById("galeri").scrollIntoView({behavior:"smooth"});
+    });
+    box.appendChild(b);
+  });
+}
+
+function renderChips(){
+  const box=document.getElementById("chips");
+  box.innerHTML="";
+  const mk=(id,label)=>{
+    const c=el("button",{class:"chip"+(FILTER===id?" on":""),type:"button",text:label});
+    c.addEventListener("click",()=>setFilter(id));
+    box.appendChild(c);
+  };
+  mk("all","Semua ("+ALL.length+")");
+  PROGRAMS.forEach(p=>mk(p.id,p.ikon+" "+p.nama+" ("+countOf(p.id)+")"));
+}
+
+function setFilter(id){
+  FILTER=id;
+  renderChips();
+  renderGallery();
+}
+
+function renderGallery(){
   const g=document.getElementById("gallery");
   g.innerHTML="";
-  PHOTOS=list.filter(f=>/^photos\/[\w.\-]+$/.test(f.file||"")).slice().reverse(); // terbaru di atas
-  document.getElementById("galleryEmpty").hidden=PHOTOS.length>0;
+  const p=PROG[FILTER];
+  document.getElementById("galTitle").textContent=p?"Dokumentasi "+p.nama:"Galeri Kegiatan";
+  document.getElementById("galLead").textContent=p?p.ket:"Potret kebersamaan dan kegiatan belajar di Rumah Tahfidz Al Ittihad.";
+  PHOTOS=ALL.filter(f=>FILTER==="all"||f.program===FILTER);
+  const em=document.getElementById("galleryEmpty");
+  em.textContent=p?"Belum ada foto dokumentasi untuk program ini.":"Belum ada foto dokumentasi.";
+  em.hidden=PHOTOS.length>0;
   PHOTOS.forEach((f,i)=>{
     const img=el("img",{src:f.file,alt:f.caption||"Dokumentasi",loading:"lazy"});
     const fig=el("figure",{class:"shot"},[img]);
-    if(f.caption||f.tanggal){
+    const pr=PROG[f.program];
+    if(f.caption||f.tanggal||pr){
       const cap=el("div",{class:"cap"});
+      if(pr&&FILTER==="all") cap.appendChild(el("b",{text:pr.ikon+" "+pr.nama}));
       if(f.caption) cap.appendChild(document.createTextNode(f.caption));
       if(f.tanggal) cap.appendChild(el("small",{text:fmtDate(f.tanggal)}));
       fig.appendChild(cap);
@@ -248,8 +313,15 @@ function renderGallery(list){
     fig.addEventListener("click",()=>openLb(i));
     g.appendChild(fig);
   });
-  document.getElementById("stFoto").textContent=PHOTOS.length;
-  if(PHOTOS.length) document.getElementById("beranda").style.backgroundImage="url('"+PHOTOS[0].file+"')";
+}
+
+function setPhotos(list){
+  ALL=list.filter(f=>/^photos\/[\w.\-]+$/.test(f.file||"")).slice().reverse(); // terbaru di atas
+  document.getElementById("stFoto").textContent=ALL.length;
+  if(ALL.length) document.getElementById("beranda").style.backgroundImage="url('"+ALL[0].file+"')";
+  renderPrograms();
+  renderChips();
+  renderGallery();
 }
 
 function renderContacts(d){
@@ -292,6 +364,8 @@ function showLb(){
   const f=PHOTOS[cur]; if(!f) return;
   document.getElementById("lbImg").src=f.file;
   const m=document.getElementById("lbMeta"); m.innerHTML="";
+  const pr=PROG[f.program];
+  if(pr) m.appendChild(el("b",{text:pr.ikon+" "+pr.nama}));
   if(f.caption) m.appendChild(document.createTextNode(f.caption));
   if(f.tanggal) m.appendChild(el("small",{text:fmtDate(f.tanggal)}));
 }
@@ -313,7 +387,7 @@ document.querySelectorAll(".reveal").forEach(n=>io?io.observe(n):n.classList.add
 
 loadData().then(d=>{
   d=Object.assign({},FALLBACK,d||{});
-  renderGallery(d.foto||[]);
+  setPhotos(d.foto||[]);
   renderContacts(d);
   if(d.updated) document.getElementById("updated").textContent="Diperbarui: "+fmtDate(d.updated);
 });
