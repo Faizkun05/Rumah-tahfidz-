@@ -1,7 +1,12 @@
 {
   "nama": "Rumah Tahfidz Al Ittihad",
   "facebook": "",
-  "ustadz": [],
+  "ustadz": [
+    {
+      "nama": "Ustadz wais Al qorni",
+      "telepon": "6281292012733"
+    }
+  ],
   "foto": [
     {
       "file": "photos/20261020-205333-3784.jpg",
